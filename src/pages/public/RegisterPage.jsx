@@ -14,11 +14,32 @@ export default function RegisterPage() {
 
   const fields = [
     {
-      label: "Nombre completo",
-      name: "fullName",
+      label: "Primer nombre",
+      name: "f_name",
       type: "text",
-      placeholder: "Ej: Juan Pérez",
+      placeholder: "Ej: Juan",
       required: true,
+    },
+    {
+      label: "Segundo nombre",
+      name: "s_name",
+      type: "text",
+      placeholder: "Ej: Carlos",
+      required: false,
+    },
+    {
+      label: "Primer apellido",
+      name: "f_lastname",
+      type: "text",
+      placeholder: "Ej: Pérez",
+      required: true,
+    },
+    {
+      label: "Segundo apellido",
+      name: "s_lastname",
+      type: "text",
+      placeholder: "Ej: Gómez",
+      required: false,
     },
     {
       label: "Correo electrónico",
@@ -45,30 +66,34 @@ export default function RegisterPage() {
 
   const handleSubmit = async (values) => {
     setLoading(true);
+    const {password, confirmPassword, email, ...rest } = values;
 
-    if (values.password !== values.confirmPassword) {
+    if (password !== confirmPassword) {
       toast.error("Las contraseñas no coinciden");
       setLoading(false);
       return;
     }
+
     try {
-      const response = await register(values.email, values.password, values.fullName);
+      const response = await register(
+        email,
+        password,
+        rest
+      );
       if (response.success) {
         toast.success(response.message);
         navigate("/");
-
       }
-
     } catch (error) {
       toast.error(error.message);
       setLoading(false);
     }
-
-
   };
+
   const handleBack = () => {
     navigate("/");
-  }
+  };
+
   return (
     <div className="flex items-center justify-center min-h-screen from-blue-100 via-blue-200 to-blue-400 p-4">
       <motion.button
@@ -108,10 +133,9 @@ export default function RegisterPage() {
             onSubmit={handleSubmit}
             submitText={loading ? "Registrando..." : "Registrarme"}
             loading={loading}
-            gridColumsClass={"grid-cols-1"}
+            gridColumsClass={"grid-cols-2 gap-4"}
           />
 
-          {/* Enlace para login */}
           <div className="text-center text-sm text-gray-500 mt-4">
             ¿Ya tienes una cuenta?{" "}
             <Link

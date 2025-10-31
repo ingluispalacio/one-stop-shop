@@ -65,9 +65,7 @@ export default function CategoriesPage() {
     setSelectedImage(null);
   };
 
-  useEffect(() => {
-    fetchCategories();
-  }, []);
+  
 
   if (isLoading) {
     return (

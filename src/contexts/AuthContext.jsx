@@ -36,10 +36,9 @@ export const AuthProvider = ({ children }) => {
   const register = async (email, password, displayName) => {
     try {
       const result = await authService.registerUser(email, password, displayName);
-
       if (result.success) {
         setUser(result.data?.user || null);
-        return result.data?.user;
+        return result;
       } else {
         setUser(null);
         throw new Error(result?.message || "Error al registrar usuario");

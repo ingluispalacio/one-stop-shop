@@ -10,16 +10,17 @@ import { doc, setDoc } from "firebase/firestore";
 import { getUserById } from "./userService";
 import { handleError, handleSuccess } from "../../utils/responseHandler";
 
-export const registerUser = async (email, password, displayName = "") => {
+export const registerUser = async (email, password, restData={}) => {
   try {
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
-
+    const displayName = `${restData.f_name} ${restData.s_name} ${restData.f_lastname} ${restData.s_lastname}`;
     if (displayName) await updateProfile(user, { displayName });
 
     const userData = {
       uid: user.uid,
       email,
       displayName,
+      ...restData,
       role: "client",
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -28,7 +29,7 @@ export const registerUser = async (email, password, displayName = "") => {
     };
 
     await setDoc(doc(db, "users", user.uid), userData);
-
+console.log(" pasoooo")
     return handleSuccess("Registro exitoso", { user: userData });
   } catch (error) {
     return handleError(error, "Error al registrar el usuario");
