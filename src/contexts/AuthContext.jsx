@@ -33,7 +33,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // 🔹 Registrar usuario
   const register = async (email, password, displayName) => {
     try {
       const result = await authService.registerUser(email, password, displayName);
@@ -51,11 +50,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // 🔹 Cerrar sesión
   const logout = async () => {
     try {
       const result = await authService.logoutUser();
       if (result.success) {
+        localStorage.clear();
         setUser(null);
         return true;
       } else {
