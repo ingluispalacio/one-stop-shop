@@ -29,7 +29,7 @@ function Header() {
   ];
 
   return (
-    <header className="bg-white shadow-md fixed top-0 z-50 px-[5%] w-full">
+    <header className="bg-white shadow-md fixed top-0 z-50 md:px-[5%] w-full">
       <div className="flex items-center justify-between p-4">
         <Link
           to="/"
@@ -54,7 +54,7 @@ function Header() {
           </motion.span>
         </Link>
 
-        <div className="hidden md:flex items-center bg-gray-100 rounded-full px-3 py-2 w-1/3">
+        <div className="hidden lg:flex items-center bg-gray-100 rounded-full px-3 py-2 w-1/3">
           <Search className="w-5 h-5 text-gray-500" />
           <input
             type="text"

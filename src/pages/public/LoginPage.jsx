@@ -70,18 +70,16 @@ export default function LoginPage() {
                 <span className="text-sm font-medium">Volver a la tienda</span>
             </motion.button>
 
-            {/* Card de Login */}
             <motion.div
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="w-full max-w-md"
+                className="w-full mx-2 max-w-xs md:max-w-md md:mx-0"
             >
                 <Card
                     hoverable={false}
                     className="shadow-xl backdrop-blur-md bg-white/80 border-lightblue-200"
                 >
-                    {/* Encabezado del Login */}
                     <div className="flex flex-col items-center mb-6">
                         <div className="flex bg-blue-500 text-white p-3 rounded-full mb-3 shadow-md">
                             <LogIn className="w-6 h-6" />
@@ -94,7 +92,6 @@ export default function LoginPage() {
                         </p>
                     </div>
 
-                    {/* Formulario */}
                     <Form
                         fields={fields}
                         onSubmit={handleSubmit}
@@ -103,7 +100,6 @@ export default function LoginPage() {
                         gridColumsClass={"grid-cols-1"}
                     />
 
-                    {/* Enlace para registro */}
                     <div className="text-center text-sm text-gray-500 mt-4">
                         ¿No tienes una cuenta?{" "}
                         <Link

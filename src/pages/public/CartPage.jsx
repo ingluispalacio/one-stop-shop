@@ -24,7 +24,7 @@ export default function CartPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="pt-24 pb-10 px-[5%] min-h-screen bg-gray-50"
+      className="pt-24 pb-10 md:px-[5%] min-h-screen bg-gray-50"
     >
       <div className="max-w-5xl mx-auto bg-white rounded-2xl shadow-md p-6">
         <div className="flex items-center justify-between border-b border-gray-400 pb-4 mb-6">

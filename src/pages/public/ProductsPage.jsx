@@ -67,14 +67,13 @@ export default function ProductsPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.6 }}
-      className="flex flex-col md:flex-row min-h-screen bg-linear-to-b from-blue-50 to-white pr-[7%] pt-16"
+      className="flex flex-col md:flex-row min-h-screen bg-linear-to-b from-blue-50 to-white md:pr-[7%] pt-16"
     >
-      {/* Sidebar */}
       <motion.aside
         initial={{ x: -30, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
-        className="w-full md:w-1/4 bg-white shadow-md border-r border-gray-100 p-6 space-y-6 pl-[7%]"
+        className="w-full md:w-1/4 bg-white shadow-md border-r border-gray-100 p-6 space-y-6 lg:pl-[7%]"
       >
         <div className="flex items-center gap-2 mb-2">
           <Filter className="w-5 h-5 text-blue-600" />
@@ -110,16 +109,13 @@ export default function ProductsPage() {
         </div>
       </motion.aside>
 
-      {/* Main */}
       <main className="flex-1 py-8 pl-8">
-        {/* Header con buscador y filtros activos */}
         <motion.div
           initial={{ y: -10, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.4 }}
           className="flex flex-col sm:flex-row justify-between items-center mb-8 gap-4"
         >
-          {/* Etiquetas de categorías seleccionadas */}
           <div className="flex flex-wrap items-center gap-2">
             {selectedCategoryIds.length === 0 ? (
               <span className="bg-blue-100 text-blue-700 text-sm font-medium px-3 py-1 rounded-full shadow-sm">
@@ -145,8 +141,7 @@ export default function ProductsPage() {
             )}
           </div>
 
-          {/* Buscador */}
-          <div className="relative w-full sm:w-72">
+          <div className="relative w-62 md:w-72">
             <Search className="absolute left-3 top-2.5 text-gray-400 w-5 h-5" />
             <input
               type="text"
@@ -166,7 +161,7 @@ export default function ProductsPage() {
             <motion.div
               layout
               transition={{ layout: { duration: 0.4, ease: "easeInOut" } }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+              className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 px-10 lg:px-14 xl:px-20"
             >
               {filteredProducts.map((product, i) => {
                 const productWithCategory = {

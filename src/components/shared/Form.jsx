@@ -68,7 +68,7 @@ export default function Form({
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full min-w-100 space-y-5 p-4"
+      className="w-full min-w-50 md:min-w-100 space-y-5 p-4"
     >
       {title && (
         <h2 className="text-xl text-center font-semibold text-gray-800  pb-2 mb-4">
