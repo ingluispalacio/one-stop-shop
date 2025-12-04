@@ -11,7 +11,7 @@ const SalesChart = ({ data }) => {
           <YAxis />
           <Tooltip />
           <Legend />
-          <Bar dataKey="sales" fill="#4ade80" />
+          <Bar dataKey="sales" name="# Ventas" fill="#4ade80" />
         </BarChart>
       </ResponsiveContainer>
     </div>
