@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import LoadingState from "../../components/shared/LoadingState";
 import ErrorState from "../../components/shared/ErrorState";
 import SalesChart from "../../components/SalesChart";
+import MonthlyRevenueChart from "../../components/MonthlyRevenueChart";
+import CategoryDistributionChart from "../../components/CategoryDistributionChart";
 
 
 const DashboardPage = () => {
@@ -74,6 +76,23 @@ const DashboardPage = () => {
         },
     ];
 
+    const revenueData = [ // Datos para la gráfica de línea (Ingresos Mensuales)
+        { month: 'Ene', revenue: 40.5 },
+        { month: 'Feb', revenue: 38.2 },
+        { month: 'Mar', revenue: 45.1 },
+        { month: 'Abr', revenue: 52.9 },
+        { month: 'May', revenue: 48.7 },
+        { month: 'Jun', revenue: 60.3 },
+    ];
+
+    const distributionData = [ // Datos para la gráfica de pastel (Distribución de Categorías)
+        { name: 'Helado de Crema', value: 300 },
+        { name: 'Helado de Agua', value: 200 },
+        { name: 'Toppings', value: 150 },
+        { name: 'Conos y Vasos', value: 50 },
+        { name: 'Especialidades', value: 100 },
+    ];
+
     return (
         <motion.div
             className="p-8"
@@ -101,10 +120,28 @@ const DashboardPage = () => {
                 ))}
             </div>
 
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.6 }}
+                >
+                    <CategoryDistributionChart data={distributionData} />
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.8 }}
+                >
+                    <MonthlyRevenueChart data={revenueData} />
+                </motion.div>
+            </div>
+
             <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.6 }}
+                transition={{ duration: 0.7, delay: 1.0 }}
             >
                 <SalesChart data={salesData} />
             </motion.div>
