@@ -28,11 +28,19 @@ function Header() {
     { name: "Contáctenos", path: "/contact" },
   ];
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <header className="bg-white shadow-md fixed top-0 z-50 md:px-[5%] w-full">
       <div className="flex items-center justify-between p-4">
         <Link
           to="/"
+          onClick={scrollToTop}
           className="text-2xl font-bold text-blue-600 flex items-center gap-2"
         >
           <motion.img
@@ -69,6 +77,7 @@ function Header() {
               <NavLink
                 key={link.name}
                 to={link.path}
+                onClick={scrollToTop}
                 className={({ isActive }) =>
                   `transition-colors relative group ${
                     isActive
@@ -88,6 +97,7 @@ function Header() {
           <div className="flex justify-center items-center gap-4">
             <Link
               to="/cart"
+              onClick={scrollToTop}
               className="relative hover:text-blue-600 transition-colors"
             >
               <ShoppingCart className="w-5 h-5" />

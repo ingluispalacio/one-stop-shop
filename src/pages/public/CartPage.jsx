@@ -6,6 +6,8 @@ import { useCart } from "../../contexts/CartContext";
 export default function CartPage() {
   const { cartItems, removeFromCart, clearCart, addToCart } = useCart();
 
+  const WHATSAPP_NUMBER = import.meta.env.VITE_WHATSAPP_NUMBER;
+
   const handleDecrease = (item) => {
     if (item.quantity > 1) {
       addToCart(item, -1);
@@ -18,6 +20,32 @@ export default function CartPage() {
     (acc, item) => acc + item.price * item.quantity,
     0
   );
+
+  const generateWhatsAppLink = () => {
+    
+    let message = "🛒 *Nuevo Pedido de Carrito*\n\n";
+
+    
+    cartItems.forEach((item) => {
+      message += `*Producto:* ${item.name}\n`;
+      message += `*Cantidad:* ${item.quantity}\n`;
+      message += `*Precio U.:* $${item.price.toFixed(2)}\n`;
+      message += `*Subtotal:* $${(item.price * item.quantity).toFixed(2)}\n`;
+      message += "--- \n"; // Separador
+    });
+
+  
+    message += `\n💰 *TOTAL DEL PEDIDO:* $${total.toFixed(2)}`;
+    message += "\n\nPor favor, confírmame el pedido. ¡Gracias!";
+
+    
+    const encodedMessage = encodeURIComponent(message);
+    
+    
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+  };
+
+  const whatsAppLink = cartItems.length > 0 ? generateWhatsAppLink() : "#";
 
   return (
     <motion.section
@@ -119,9 +147,9 @@ export default function CartPage() {
                 <span className="text-blue-600">${total.toFixed(2)}</span>
               </h3>
 
-              <button className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+              <Link to={whatsAppLink} target="_blank" className="bg-blue-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
                 Proceder al pago
-              </button>
+              </Link>
             </div>
           </>
         )}
